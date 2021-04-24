@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SIPManager</string>
+    <string name="app_name_readable">SIP Manager</string>
+    <string name="sip_manager">SIP Manager</string>
+    <string name="password">Password</string>
+    <string name="unlock_database">Unlock DataBase</string>
+    <string name="biometric_button_login">Biometric Button Login</string>
+    <string name="register_biometrics">Register Biometrics</string>
 </resources>
