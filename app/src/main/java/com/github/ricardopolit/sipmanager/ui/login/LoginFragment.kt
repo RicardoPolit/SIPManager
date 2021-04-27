@@ -1,6 +1,7 @@
 package com.github.ricardopolit.sipmanager.ui.login
 
 import android.content.Context
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.text.Editable
@@ -12,14 +13,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.github.ricardopolit.sipmanager.MainActivity
 import com.github.ricardopolit.sipmanager.R
 import com.github.ricardopolit.sipmanager.databinding.LoginFragmentBinding
 import com.github.ricardopolit.sipmanager.util.Preference
 
+private const val SHARED_PREFERENCE_DBEXISTS = "DB_EXISTS"
+
 class LoginFragment : Fragment() {
 
     private lateinit var viewModel: LoginViewModel
-    private val SHARED_PREFERENCE_DBEXISTS = "DB_EXISTS"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -31,9 +34,11 @@ class LoginFragment : Fragment() {
                 SHARED_PREFERENCE_DBEXISTS ) ){
 
             Log.d( "LoginFragment", "DataBase not created" )
-            this.findNavController().navigate(
-                LoginFragmentDirections.actionLoginFragmentToNavGraphMain())
-
+//            this.findNavController().navigate(
+//                LoginFragmentDirections.actionLoginFragmentToNavGraphMain())
+            val intent = Intent(activity,MainActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
         }
 
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
