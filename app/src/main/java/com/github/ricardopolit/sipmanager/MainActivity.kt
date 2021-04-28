@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity: AppCompatActivity() {
-    private val INTENT_USER_PASSWORD = "P455W0RD_U53R"
+    private val INTENT_USER_PASSWORD = "com.github.ricardopolit.sipmanager.P455W0RD_U53R"
     private lateinit var userPassword: String
 
     override fun onCreate(savedInstanceState: Bundle?) {

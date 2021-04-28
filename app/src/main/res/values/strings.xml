@@ -5,11 +5,12 @@
     <string name="password">Password</string>
     <string name="unlock_database">Unlock DataBase</string>
     <string name="biometric_button_login">Biometric Button Login</string>
-    <string name="register_biometrics">Register Biometrics</string>
+    <string name="register_biometrics">Register \n Biometrics</string>
     <string name="title_activity_main">MainActivity</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
+    <string name="register_password_description">Set your password</string>
+    <string name="recover_question">Recover Question</string>
+    <string name="question">Question</string>
+    <string name="answer">Answer</string>
+    <string name="set_credentials">Set credentials</string>
+    <string name="forgot_password">Forgot \n password?</string>
 </resources>

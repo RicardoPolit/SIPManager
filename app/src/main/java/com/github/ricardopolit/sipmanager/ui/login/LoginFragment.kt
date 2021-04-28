@@ -1,4 +1,4 @@
-package com.github.ricardopolit.sipmanager.ui.login
+ package com.github.ricardopolit.sipmanager.ui.login
 
 import android.content.Context
 import android.content.Intent
@@ -35,10 +35,10 @@ class LoginFragment : Fragment() {
 
             Log.d( "LoginFragment", "DataBase not created" )
 //            this.findNavController().navigate(
-//                LoginFragmentDirections.actionLoginFragmentToNavGraphMain())
-            val intent = Intent(activity,MainActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
+//                LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
+//            val intent = Intent(activity,MainActivity::class.java)
+//            startActivity(intent)
+//            activity?.finish()
         }
 
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)

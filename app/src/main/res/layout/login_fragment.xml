@@ -14,8 +14,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.login.LoginFragment"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        tools:context=".ui.login.LoginFragment">
 
 
         <TextView
@@ -74,7 +74,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guideline2"/>
+            app:layout_constraintTop_toBottomOf="@+id/guideline2" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonBiometricLoging"
@@ -82,13 +82,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/max_padding"
             android:contentDescription="@string/biometric_button_login"
+            android:visibility="gone"
             app:icon="@drawable/ic_baseline_fingerprint_24"
             app:iconPadding="0dp"
             app:iconTint="@color/Blue_munsell"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
-            android:visibility="gone"/>
+            tools:visibility="visible" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonBiometricRegister"
@@ -97,16 +98,32 @@
             android:layout_margin="@dimen/max_padding"
             android:contentDescription="@string/biometric_button_login"
             android:text="@string/register_biometrics"
-            android:textSize="18sp"
             android:textColor="@color/Blue_munsell"
-            app:icon="@drawable/ic_baseline_fingerprint_24"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:backgroundTint="?android:attr/textColorPrimary"
             app:iconPadding="0dp"
             app:iconTint="@color/Blue_munsell"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
-            android:visibility="gone"
-            tools:visibility="visible"/>
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonRecoverPassword"
+            tools:visibility="visible" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonRecoverPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/max_padding"
+            android:text="@string/forgot_password"
+            android:textColor="@color/Blue_munsell"
+            android:textSize="14sp"
+            app:backgroundTint="?android:attr/textColorPrimary"
+            app:iconPadding="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonBiometricRegister"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
