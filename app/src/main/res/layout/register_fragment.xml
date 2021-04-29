@@ -75,6 +75,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/Rich_black"
                 android:textSize="18sp"
+                android:text="@={registerViewModel.password}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -110,6 +111,7 @@
                 android:inputType="text"
                 android:textAlignment="textStart"
                 android:textColor="@color/Rich_black"
+                android:text="@={registerViewModel.recoverQuestion}"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayoutRecoverAnswer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -136,6 +138,7 @@
                 android:inputType="textPassword"
                 android:textAlignment="center"
                 android:textColor="@color/Rich_black"
+                android:text="@={registerViewModel.recoverAnswer}"
                 app:layout_constraintBottom_toTopOf="@+id/guideline3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -147,9 +150,22 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/max_padding"
+            android:enabled="false"
             android:text="@string/set_credentials"
             android:textColor="@color/Blue_munsell"
+            android:onClick="@{() -> registerViewModel.onSetCredentialsClicked()}"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxBiometrics" />
+
+        <CheckBox
+            android:id="@+id/checkBoxBiometrics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin"
+            android:checked="@={registerViewModel.enableBiometric}"
+            android:text="@string/enable_biometric_login"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutRecoverAnswer" />
 

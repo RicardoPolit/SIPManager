@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="loginViewModel"
             type="com.github.ricardopolit.sipmanager.ui.login.LoginViewModel" />
@@ -51,6 +51,7 @@
             android:textAlignment="center"
             android:textColor="@color/Rich_black"
             android:textSize="18sp"
+            android:text="@={loginViewModel.password}"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,6 +73,7 @@
             android:text="@string/unlock_database"
             android:textColor="@color/Blue_munsell"
             android:textSize="18sp"
+            android:onClick="@{() -> loginViewModel.onLoginClicked()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guideline2" />
@@ -82,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/max_padding"
             android:contentDescription="@string/biometric_button_login"
-            android:visibility="gone"
+            android:visibility="@{loginViewModel.buttonLoginBiometricVisibility ? View.VISIBLE: View.GONE}"
             app:icon="@drawable/ic_baseline_fingerprint_24"
             app:iconPadding="0dp"
             app:iconTint="@color/Blue_munsell"
@@ -96,11 +98,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/max_padding"
-            android:contentDescription="@string/biometric_button_login"
             android:text="@string/register_biometrics"
             android:textColor="@color/Blue_munsell"
             android:textSize="14sp"
-            android:visibility="gone"
+            android:visibility="@{loginViewModel.buttonRegisterBiometricVisibility ? View.VISIBLE : View.GONE}"
             app:backgroundTint="?android:attr/textColorPrimary"
             app:iconPadding="0dp"
             app:iconTint="@color/Blue_munsell"

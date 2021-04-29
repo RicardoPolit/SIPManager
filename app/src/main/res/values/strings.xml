@@ -13,4 +13,6 @@
     <string name="answer">Answer</string>
     <string name="set_credentials">Set credentials</string>
     <string name="forgot_password">Forgot \n password?</string>
+    <string name="enable_biometric_login">Enable biometric login</string>
+    <string name="incorrect_password">Incorrect password</string>
 </resources>

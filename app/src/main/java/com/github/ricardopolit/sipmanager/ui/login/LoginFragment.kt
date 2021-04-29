@@ -1,7 +1,5 @@
  package com.github.ricardopolit.sipmanager.ui.login
 
-import android.content.Context
-import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.text.Editable
@@ -12,13 +10,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.github.ricardopolit.sipmanager.MainActivity
 import com.github.ricardopolit.sipmanager.R
 import com.github.ricardopolit.sipmanager.databinding.LoginFragmentBinding
 import com.github.ricardopolit.sipmanager.util.Preference
+import com.google.android.material.snackbar.Snackbar
 
-private const val SHARED_PREFERENCE_DBEXISTS = "DB_EXISTS"
+ private const val SHARED_PREFERENCE_DBEXISTS = "DB_EXISTS"
 
 class LoginFragment : Fragment() {
 
@@ -29,16 +28,13 @@ class LoginFragment : Fragment() {
         val binding: LoginFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.login_fragment, container, false)
 
-        if( !Preference.getPreference(
+        if( !Preference.getPreferenceFlag(
                 requireActivity().applicationContext,
                 SHARED_PREFERENCE_DBEXISTS ) ){
 
             Log.d( "LoginFragment", "DataBase not created" )
-//            this.findNavController().navigate(
-//                LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
-//            val intent = Intent(activity,MainActivity::class.java)
-//            startActivity(intent)
-//            activity?.finish()
+            this.findNavController().navigate(
+                LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
 
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
@@ -54,6 +50,26 @@ class LoginFragment : Fragment() {
             }
 
             override fun afterTextChanged(p0: Editable?) {}
+        })
+
+        viewModel.navigateToInvestment.observe( viewLifecycleOwner, Observer {
+            if(it){
+                this.findNavController().navigate(
+                    LoginFragmentDirections
+                        .actionLoginFragmentToNavGraphMain())
+                viewModel.doneNavigating()
+            }
+        } )
+
+        viewModel.showSnackBarEventPasswordIncorrect.observe( viewLifecycleOwner, Observer {
+            if(it){
+                Snackbar.make(
+                    requireActivity().findViewById(android.R.id.content),
+                    getString(R.string.incorrect_password),
+                    Snackbar.LENGTH_LONG
+                ).show()
+                viewModel.doneShowingSnackBarEventPasswordIncorrect()
+            }
         })
 
         return binding.root

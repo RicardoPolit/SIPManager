@@ -8,7 +8,7 @@ object Preference {
     private const val SHARED_PREFERENCE_FILENAME =
             "com.github.ricardopolit.sipmanager.PREFERENCE_FILE_KEY"
 
-    fun storePreference(
+    fun storePreferenceFlag(
             context: Context,
             prefKey: String,
             value: Boolean
@@ -18,12 +18,30 @@ object Preference {
                 .putBoolean(prefKey,value).apply()
     }
 
-    fun getPreference(
+    fun getPreferenceFlag(
             context: Context,
             prefKey: String
     ): Boolean {
         return context.getSharedPreferences(SHARED_PREFERENCE_FILENAME, Context.MODE_PRIVATE)
                 .getBoolean(prefKey,false)
+    }
+
+    fun storePreferenceString(
+            context: Context,
+            prefKey: String,
+            value: String
+    ){
+        context.getSharedPreferences(SHARED_PREFERENCE_FILENAME, Context.MODE_PRIVATE)
+                .edit()
+                .putString(prefKey,value).apply()
+    }
+
+    fun getPreferenceString(
+            context: Context,
+            prefKey: String
+    ): String? {
+        return context.getSharedPreferences(SHARED_PREFERENCE_FILENAME, Context.MODE_PRIVATE)
+                .getString(prefKey,null)
     }
 
     fun storeEncryptedValue(
