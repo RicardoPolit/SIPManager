@@ -1,5 +1,6 @@
  package com.github.ricardopolit.sipmanager.ui.login
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.text.Editable
@@ -12,15 +13,16 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.github.ricardopolit.sipmanager.MainActivity
 import com.github.ricardopolit.sipmanager.R
 import com.github.ricardopolit.sipmanager.databinding.LoginFragmentBinding
 import com.github.ricardopolit.sipmanager.util.Preference
 import com.google.android.material.snackbar.Snackbar
 
- private const val SHARED_PREFERENCE_DBEXISTS = "DB_EXISTS"
 
 class LoginFragment : Fragment() {
 
+    private val SHARED_PREFERENCE_DBEXISTS = "DB_EXISTS"
     private lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -52,12 +54,16 @@ class LoginFragment : Fragment() {
             override fun afterTextChanged(p0: Editable?) {}
         })
 
-        viewModel.navigateToInvestment.observe( viewLifecycleOwner, Observer {
-            if(it){
-                this.findNavController().navigate(
-                    LoginFragmentDirections
-                        .actionLoginFragmentToNavGraphMain())
+        viewModel.navigateToInvestment.observe( viewLifecycleOwner, Observer { password ->
+            password?.let{
+//                this.findNavController().navigate(
+//                    LoginFragmentDirections
+//                        .actionLoginFragmentToNavGraphMain())
+                val intent = Intent(activity,MainActivity::class.java)
+                intent.putExtra("com.github.ricardopolit.sipmanager.P455W0RD_U53R",password)
+                startActivity(intent)
                 viewModel.doneNavigating()
+                activity?.finish()
             }
         } )
 

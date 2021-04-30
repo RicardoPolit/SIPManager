@@ -23,8 +23,8 @@ class LoginViewModel(
     var buttonRegisterBiometricVisibility =
             biometricEnable && BiometricAuth.isBiometricCapable( application.applicationContext )
 
-    private var _navigateToInvestment = MutableLiveData<Boolean>()
-    val navigateToInvestment : LiveData<Boolean>
+    private var _navigateToInvestment = MutableLiveData<String?>()
+    val navigateToInvestment : LiveData<String?>
         get() = _navigateToInvestment
 
     private var _showSnackBarEventPasswordIncorrect = MutableLiveData<Boolean>()
@@ -38,14 +38,14 @@ class LoginViewModel(
             "com.github.ricardopolit.sipmanager.HASHED_PASSWORD" )
 
         if( HashString.checkValue( password, hashedPassword ) )
-            _navigateToInvestment.value = true
+            _navigateToInvestment.value = password
         else
             _showSnackBarEventPasswordIncorrect.value = true
 
     }
 
     fun doneNavigating(){
-        _navigateToInvestment.value = false
+        _navigateToInvestment.value = null
     }
 
     fun doneShowingSnackBarEventPasswordIncorrect(){
