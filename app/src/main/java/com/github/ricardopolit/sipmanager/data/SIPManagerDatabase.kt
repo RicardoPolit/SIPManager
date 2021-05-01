@@ -11,6 +11,7 @@ import net.sqlcipher.database.SupportFactory
 @Database(
         entities = [
             Portfolio::class,
+            Deposit::class,
             App::class],
         version = 1,
         exportSchema = false)
@@ -18,6 +19,7 @@ abstract class SIPManagerDatabase(): RoomDatabase(){
 
     abstract val portfolioDAO: PortfolioDAO
     abstract val appDAO: AppDAO
+    abstract val depositDAO: DepositDAO
 
     companion object{
 
