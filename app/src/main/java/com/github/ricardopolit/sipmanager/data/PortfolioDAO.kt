@@ -1,10 +1,6 @@
 package com.github.ricardopolit.sipmanager.data
 
-import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface PortfolioDAO {
@@ -15,22 +11,30 @@ interface PortfolioDAO {
     @Update
     suspend fun update(portfolio: Portfolio)
 
-    @Query("DELETE FROM portfolio")
-    suspend fun clearAll()
+    @Query("DELETE FROM portfolios")
+    suspend fun clearAllPortfolios()
 
-    @Query("DELETE FROM portfolio WHERE id = :id")
+    @Query("DELETE FROM portfolios WHERE id = :id")
     suspend fun clearPortfolio(id: Long)
 
-    @Query("UPDATE portfolio SET active = 0 WHERE id = :id")
+    @Query("UPDATE portfolios SET active = 0 WHERE id = :id")
     suspend fun deletePortfolio(id: Long)
 
-    @Query("SELECT * FROM portfolio ORDER BY date_start")
-    suspend fun getAllPortfoliosHistory(): List<Portfolio>
+    @Query("SELECT * FROM portfolios ORDER BY date_start")
+    suspend fun getAllHistoryPortfolios(): List<Portfolio>
 
-    @Query("SELECT * FROM portfolio WHERE active = 1 ORDER BY date_start")
+    @Query("SELECT * FROM portfolios WHERE active = 1 ORDER BY date_start")
     suspend fun getAllPortfolios(): List<Portfolio>
 
-    @Query("SELECT * FROM portfolio WHERE id = :id")
+    @Query("SELECT * FROM portfolios WHERE id = :id")
     suspend fun getPortfolio(id: Long): Portfolio?
+
+    @Transaction
+    @Query( "SELECT * FROM portfolios")
+    suspend fun getPortfoliosWithDeposits(): List<PortfolioWithDeposits>
+
+    @Transaction
+    @Query("SELECT * FROM portfolios WHERE id = :id")
+    suspend fun getPortfolioWithDeposits(id: Long): PortfolioWithDeposits?
 
 }

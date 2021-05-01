@@ -8,10 +8,16 @@ import com.github.ricardopolit.sipmanager.util.DatabasekeyMgr
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
 
-@Database(entities = [Portfolio::class], version = 1, exportSchema = false)
+@Database(
+        entities = [
+            Portfolio::class,
+            App::class],
+        version = 1,
+        exportSchema = false)
 abstract class SIPManagerDatabase(): RoomDatabase(){
 
     abstract val portfolioDAO: PortfolioDAO
+    abstract val appDAO: AppDAO
 
     companion object{
 

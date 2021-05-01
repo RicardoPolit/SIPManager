@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity( tableName = "portfolio" )
+@Entity( tableName = "portfolios" )
 data class Portfolio(
 
         @PrimaryKey(autoGenerate = true)

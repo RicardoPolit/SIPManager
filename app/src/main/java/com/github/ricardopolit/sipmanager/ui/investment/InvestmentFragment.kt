@@ -32,24 +32,24 @@ class InvestmentFragment : Fragment() {
                 Snackbar.LENGTH_LONG
         ).show()
 
-        val portfolio = Portfolio(
-                name = "primer portafolio",
-                goal = "probar la base de datos",
-                dateFinish = System.currentTimeMillis()+1000,
-                color = Color.BLACK.toString()
-        )
-
-        viewLifecycleOwner.lifecycleScope.launch{
-            insert(portfolio,password)
-        }
+//        val portfolio = Portfolio(
+//                name = "primer portafolio",
+//                goal = "probar la base de datos",
+//                dateFinish = System.currentTimeMillis()+1000,
+//                color = Color.BLACK.toString()
+//        )
+//
+//        viewLifecycleOwner.lifecycleScope.launch{
+//            insert(portfolio,password)
+//        }
 
         return inflater.inflate(R.layout.investment_fragment, container, false)
     }
 
-    private suspend fun insert(portfolio: Portfolio, password: String){
-        withContext(Dispatchers.IO){
-            SIPManagerDatabase.getInstance(requireContext(),password).portfolioDAO.insert(portfolio)
-        }
-    }
+//    private suspend fun insert(portfolio: Portfolio, password: String){
+//        withContext(Dispatchers.IO){
+//            SIPManagerDatabase.getInstance(requireContext(),password).portfolioDAO.insert(portfolio)
+//        }
+//    }
 
 }
