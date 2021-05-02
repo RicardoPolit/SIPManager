@@ -32,6 +32,10 @@ interface AppDAO {
     @Query("SELECT * from apps WHERE id_app = :id")
     suspend fun getAppWithAssets(id: Long): AppWithAssets?
 
+    //TODO implement insertAppAssetCrossRef into Repository
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAppAssetCrossRef(join: AppAssetCrossRef)
+
     @Query("UPDATE apps SET active = 0 WHERE id_app = :id")
     suspend fun deleteApp(id: Long)
 

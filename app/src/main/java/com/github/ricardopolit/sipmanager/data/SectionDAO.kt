@@ -8,6 +8,10 @@ interface SectionDAO {
     @Insert
     suspend fun insert(section: Section)
 
+    //TODO implement insertSectionAssetCrossRef into Repository
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertSectionAssetCrossRef(join: SectionAssetCrossRef)
+
     @Update
     suspend fun update(section: Section)
 
