@@ -12,14 +12,20 @@ import net.sqlcipher.database.SupportFactory
         entities = [
             Portfolio::class,
             Deposit::class,
-            App::class],
+            Section::class,
+            Asset::class,
+            App::class,
+            SectionAssetCrossRef::class,
+            AppAssetCrossRef::class],
         version = 1,
         exportSchema = false)
 abstract class SIPManagerDatabase(): RoomDatabase(){
 
     abstract val portfolioDAO: PortfolioDAO
-    abstract val appDAO: AppDAO
     abstract val depositDAO: DepositDAO
+    abstract val sectionDAO: SectionDAO
+    abstract val assetDAO: AssetDAO
+    abstract val appDAO: AppDAO
 
     companion object{
 

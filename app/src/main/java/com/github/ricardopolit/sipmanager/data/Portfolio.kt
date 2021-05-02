@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 data class Portfolio(
 
         @PrimaryKey(autoGenerate = true)
+        @ColumnInfo(name = "id_portfolio")
         var id: Long = 0L,
 
         @ColumnInfo(name = "name")
@@ -26,10 +27,13 @@ data class Portfolio(
         var totalDeposits: Int = 0,
 
         @ColumnInfo(name = "earnings")
-        var earnings: Int = 0,
+        val earnings: Float = 0.0F,
 
         @ColumnInfo(name = "color")
         var color: String,
+
+        @ColumnInfo(name = "currency")
+        var currency: String,
 
         @ColumnInfo(name = "active")
         var active: Boolean = true

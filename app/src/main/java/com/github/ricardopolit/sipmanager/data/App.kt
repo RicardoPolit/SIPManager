@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 data class App(
 
         @PrimaryKey(autoGenerate = true)
+        @ColumnInfo(name = "id_app")
         var id: Long = 0L,
 
         @ColumnInfo(name = "name")

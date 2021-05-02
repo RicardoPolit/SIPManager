@@ -1,9 +1,6 @@
 package com.github.ricardopolit.sipmanager.data
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface AppDAO {
@@ -14,22 +11,37 @@ interface AppDAO {
     @Update
     suspend fun update(app: App)
 
-    @Query( "SELECT * FROM apps ORDER BY id" )
+    @Query( "SELECT * FROM apps ORDER BY id_app" )
     suspend fun getAllHistoryApps(): List<App>
 
-    @Query( "SELECT * FROM apps WHERE active = 1 ORDER BY id" )
+    @Query( "SELECT * FROM apps WHERE active = 1 ORDER BY id_app" )
     suspend fun getAllApps(): List<App>
 
-    @Query( "SELECT * FROM apps WHERE id = :id" )
+    @Query( "SELECT * FROM apps WHERE id_app = :id" )
     suspend fun getApp(id: Long): App?
 
-    @Query("UPDATE apps SET active = 0 WHERE id = :id")
+    @Transaction
+    @Query("SELECT * FROM apps WHERE active = 1")
+    suspend fun getAppsWithAssets(): List<AppWithAssets>
+
+    @Transaction
+    @Query("SELECT * FROM apps")
+    suspend fun getAppsHistoryWithAssets(): List<AppWithAssets>
+
+    @Transaction
+    @Query("SELECT * from apps WHERE id_app = :id")
+    suspend fun getAppWithAssets(id: Long): AppWithAssets?
+
+    @Query("UPDATE apps SET active = 0 WHERE id_app = :id")
     suspend fun deleteApp(id: Long)
+
+    @Query("UPDATE apps SET active = 1 WHERE id_app = :id")
+    suspend fun recoverApp(id: Long)
 
     @Query( "UPDATE apps SET active = 0" )
     suspend fun deleteAllApps()
 
-    @Query("DELETE FROM apps WHERE id = :id")
+    @Query("DELETE FROM apps WHERE id_app = :id")
     suspend fun clearApp(id: Long)
 
     @Query("DELETE FROM apps")
