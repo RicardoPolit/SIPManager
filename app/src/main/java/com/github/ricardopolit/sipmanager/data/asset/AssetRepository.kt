@@ -70,4 +70,52 @@ class AssetRepository private constructor(
         return assetDAO.getAssetWithApps(id)
     }
 
+    fun getAssetsHistoryWithAssetHistoryValues(): LiveData<List<AssetWithAssetValueHistory>>{
+        return assetDAO.getAssetsHistoryWithAssetHistoryValues()
+    }
+
+    fun getAssetsWithAssetHistoryValues(): LiveData<List<AssetWithAssetValueHistory>>{
+        return assetDAO.getAssetsWithAssetHistoryValues()
+    }
+
+    suspend fun getAssetWithAssetHistoryValues(id: Long): AssetWithAssetValueHistory?{
+        return assetDAO.getAssetWithAssetHistoryValues(id)
+    }
+
+    fun getAssetsHistoryWithAssetBuyVIs(): LiveData<List<AssetWithAssetBuyVI>>{
+        return assetDAO.getAssetsHistoryWithAssetBuyVIs()
+    }
+
+    fun getAssetsWithAssetBuyVIs(): LiveData<List<AssetWithAssetBuyVI>>{
+        return assetDAO.getAssetsWithAssetBuyVIs()
+    }
+
+    suspend fun getAssetWithAssetBuyVIs(id: Long): AssetWithAssetBuyVI?{
+        return assetDAO.getAssetWithAssetBuyVIs(id)
+    }
+
+    fun getAssetsHistoryWithAssetDividendVIs(): LiveData<List<AssetWithAssetDividendVI>>{
+        return assetDAO.getAssetsHistoryWithAssetDividendVIs()
+    }
+
+    fun getAssetsWithAssetDividendVIs(): LiveData<List<AssetWithAssetDividendVI>>{
+        return assetDAO.getAssetsWithAssetDividendVIs()
+    }
+
+    suspend fun getAssetWithAssetDividendVIs(id: Long): AssetWithAssetDividendVI?{
+        return assetDAO.getAssetWithAssetDividendVIs(id)
+    }
+
+    fun getAssetsHistoryWithAssetBuyFIs(): LiveData<List<AssetWithAssetBuyFI>>{
+        return assetDAO.getAssetsHistoryWithAssetBuyFIs()
+    }
+
+    fun getAssetsWithAssetBuyFIs(): LiveData<List<AssetWithAssetBuyFI>>{
+        return assetDAO.getAssetsWithAssetBuyFIs()
+    }
+
+    suspend fun getAssetWithAssetBuyFIs(id: Long): AssetWithAssetBuyFI?{
+        return assetDAO.getAssetWithAssetBuyFIs(id)
+    }
+
 }

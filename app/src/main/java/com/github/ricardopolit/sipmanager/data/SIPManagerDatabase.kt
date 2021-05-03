@@ -9,6 +9,16 @@ import com.github.ricardopolit.sipmanager.data.app.AppAssetCrossRef
 import com.github.ricardopolit.sipmanager.data.app.AppDAO
 import com.github.ricardopolit.sipmanager.data.asset.Asset
 import com.github.ricardopolit.sipmanager.data.asset.AssetDAO
+import com.github.ricardopolit.sipmanager.data.assetbuyfi.AssetBuyFI
+import com.github.ricardopolit.sipmanager.data.assetbuyfi.AssetBuyFIDAO
+import com.github.ricardopolit.sipmanager.data.assetbuyvi.AssetBuyVI
+import com.github.ricardopolit.sipmanager.data.assetbuyvi.AssetBuyVIDAO
+import com.github.ricardopolit.sipmanager.data.assetdividendvi.AssetDividendVI
+import com.github.ricardopolit.sipmanager.data.assetdividendvi.AssetDividendVIDAO
+import com.github.ricardopolit.sipmanager.data.assetsoldvi.AssetSoldVI
+import com.github.ricardopolit.sipmanager.data.assetsoldvi.AssetSoldVIDAO
+import com.github.ricardopolit.sipmanager.data.assetvaluehistory.AssetValueHistory
+import com.github.ricardopolit.sipmanager.data.assetvaluehistory.AssetValueHistoryDAO
 import com.github.ricardopolit.sipmanager.data.deposit.Deposit
 import com.github.ricardopolit.sipmanager.data.deposit.DepositDAO
 import com.github.ricardopolit.sipmanager.data.portfolio.Portfolio
@@ -26,6 +36,11 @@ import net.sqlcipher.database.SupportFactory
             Deposit::class,
             Section::class,
             Asset::class,
+            AssetValueHistory::class,
+            AssetBuyFI::class,
+            AssetBuyVI::class,
+            AssetSoldVI::class,
+            AssetDividendVI::class,
             App::class,
             SectionAssetCrossRef::class,
             AppAssetCrossRef::class],
@@ -37,6 +52,11 @@ abstract class SIPManagerDatabase(): RoomDatabase(){
     abstract val depositDAO: DepositDAO
     abstract val sectionDAO: SectionDAO
     abstract val assetDAO: AssetDAO
+    abstract val assetValueHistoryDAO: AssetValueHistoryDAO
+    abstract val assetBuyFIDAO: AssetBuyFIDAO
+    abstract val assetBuyVIDAO: AssetBuyVIDAO
+    abstract val assetSoldVIDAO: AssetSoldVIDAO
+    abstract val assetDividendVIDAO: AssetDividendVIDAO
     abstract val appDAO: AppDAO
 
     companion object{

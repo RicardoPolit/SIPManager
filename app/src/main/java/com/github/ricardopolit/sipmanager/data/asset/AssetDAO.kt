@@ -56,4 +56,53 @@ interface AssetDAO {
     @Transaction
     @Query("SELECT * FROM assets WHERE id_asset = :id")
     suspend fun getAssetWithApps(id: Long): AssetWithApps?
+
+    @Transaction
+    @Query( "SELECT * FROM assets")
+    fun getAssetsHistoryWithAssetHistoryValues(): LiveData<List<AssetWithAssetValueHistory>>
+
+    @Transaction
+    @Query( "SELECT * FROM assets WHERE active = 1")
+    fun getAssetsWithAssetHistoryValues(): LiveData<List<AssetWithAssetValueHistory>>
+
+    @Transaction
+    @Query("SELECT * FROM assets WHERE id_asset = :id")
+    suspend fun getAssetWithAssetHistoryValues(id: Long): AssetWithAssetValueHistory?
+
+    @Transaction
+    @Query( "SELECT * FROM assets WHERE income_type = 1")
+    fun getAssetsHistoryWithAssetBuyVIs(): LiveData<List<AssetWithAssetBuyVI>>
+
+    @Transaction
+    @Query( "SELECT * FROM assets WHERE active = 1 AND income_type = 1")
+    fun getAssetsWithAssetBuyVIs(): LiveData<List<AssetWithAssetBuyVI>>
+
+    @Transaction
+    @Query("SELECT * FROM assets WHERE id_asset = :id AND income_type = 1")
+    suspend fun getAssetWithAssetBuyVIs(id: Long): AssetWithAssetBuyVI?
+
+    @Transaction
+    @Query( "SELECT * FROM assets WHERE income_type = 1")
+    fun getAssetsHistoryWithAssetDividendVIs(): LiveData<List<AssetWithAssetDividendVI>>
+
+    @Transaction
+    @Query( "SELECT * FROM assets WHERE active = 1 AND income_type = 1")
+    fun getAssetsWithAssetDividendVIs(): LiveData<List<AssetWithAssetDividendVI>>
+
+    @Transaction
+    @Query("SELECT * FROM assets WHERE id_asset = :id AND income_type = 1")
+    suspend fun getAssetWithAssetDividendVIs(id: Long): AssetWithAssetDividendVI?
+
+    @Transaction
+    @Query( "SELECT * FROM assets WHERE income_type = 0")
+    fun getAssetsHistoryWithAssetBuyFIs(): LiveData<List<AssetWithAssetBuyFI>>
+
+    @Transaction
+    @Query( "SELECT * FROM assets WHERE active = 1 AND income_type = 0")
+    fun getAssetsWithAssetBuyFIs(): LiveData<List<AssetWithAssetBuyFI>>
+
+    @Transaction
+    @Query("SELECT * FROM assets WHERE id_asset = :id AND income_type = 0")
+    suspend fun getAssetWithAssetBuyFIs(id: Long): AssetWithAssetBuyFI?
+
 }

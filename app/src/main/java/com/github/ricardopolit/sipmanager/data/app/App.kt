@@ -14,6 +14,10 @@ data class App(
         @ColumnInfo(name = "name")
         var name: String,
 
+        @ColumnInfo(name = "id_asset_default")
+        var idAssetDefault: Long,
+
         @ColumnInfo(name = "active")
         var active: Boolean = true
+
 )
