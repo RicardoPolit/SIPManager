@@ -1,5 +1,6 @@
-package com.github.ricardopolit.sipmanager.data
+package com.github.ricardopolit.sipmanager.data.section
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -8,7 +9,6 @@ interface SectionDAO {
     @Insert
     suspend fun insert(section: Section)
 
-    //TODO implement insertSectionAssetCrossRef into Repository
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertSectionAssetCrossRef(join: SectionAssetCrossRef)
 
@@ -16,27 +16,27 @@ interface SectionDAO {
     suspend fun update(section: Section)
 
     @Query( "SELECT * FROM sections ORDER BY id_section" )
-    suspend fun getAllHistorySections(): List<Section>
+    fun getAllHistorySections(): LiveData<List<Section>>
 
     @Query( "SELECT * FROM sections WHERE active = 1 ORDER BY id_section" )
-    suspend fun getAllSections(): List<Section>
+    fun getAllSections(): LiveData<List<Section>>
 
     @Query( "SELECT * FROM sections WHERE id_section = :id" )
     suspend fun getSection(id: Long): Section?
 
     @Query("SELECT * FROM sections WHERE id_foreign_portfolio = :idPortfolio AND active = 1 ORDER BY id_section")
-    suspend fun getAllSectionsFromPortfolio(idPortfolio: Long): List<Section>
+    fun getAllSectionsFromPortfolio(idPortfolio: Long): LiveData<List<Section>>
 
     @Query("SELECT * FROM sections WHERE id_foreign_portfolio = :idPortfolio ORDER BY id_section")
-    suspend fun getAllSectionsFromPortfolioHistory(idPortfolio: Long): List<Section>
+    fun getAllSectionsFromPortfolioHistory(idPortfolio: Long): LiveData<List<Section>>
 
     @Transaction
     @Query("SELECT * FROM sections")
-    suspend fun getSectionsHistoryWithAssets(): List<SectionWithAssets>
+    fun getSectionsHistoryWithAssets(): LiveData<List<SectionWithAssets>>
 
     @Transaction
     @Query("SELECT * FROM sections WHERE active = 1")
-    suspend fun getSectionsWithAssets(): List<SectionWithAssets>
+    fun getSectionsWithAssets(): LiveData<List<SectionWithAssets>>
 
     @Transaction
     @Query("SELECT * FROM sections WHERE id_section = :id")

@@ -1,21 +1,13 @@
 package com.github.ricardopolit.sipmanager.ui.investment
 
-import android.graphics.Color
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
 import com.github.ricardopolit.sipmanager.MainActivity
 import com.github.ricardopolit.sipmanager.R
-import com.github.ricardopolit.sipmanager.data.Portfolio
-import com.github.ricardopolit.sipmanager.data.SIPManagerDatabase
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class InvestmentFragment : Fragment() {
 

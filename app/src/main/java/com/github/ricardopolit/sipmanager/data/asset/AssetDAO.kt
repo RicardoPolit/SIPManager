@@ -1,8 +1,7 @@
-package com.github.ricardopolit.sipmanager.data
+package com.github.ricardopolit.sipmanager.data.asset
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
-
-//TODO implement functions in repository
 
 @Dao
 interface AssetDAO {
@@ -26,21 +25,21 @@ interface AssetDAO {
     suspend fun recoverAsset(id: Long)
 
     @Query("SELECT * FROM assets ORDER BY id_asset")
-    suspend fun getAllHistoryAssets(): List<Asset>
+    fun getAllHistoryAssets(): LiveData<List<Asset>>
 
     @Query("SELECT * FROM assets WHERE active = 1 ORDER BY id_asset")
-    suspend fun getAllAssets(): List<Asset>
+    fun getAllAssets(): LiveData<List<Asset>>
 
     @Query("SELECT * FROM assets WHERE id_asset = :id")
     suspend fun getAsset(id: Long): Asset?
 
     @Transaction
     @Query( "SELECT * FROM assets")
-    suspend fun getAssetsHistoryWithSections(): List<AssetWithSections>
+    fun getAssetsHistoryWithSections(): LiveData<List<AssetWithSections>>
 
     @Transaction
     @Query( "SELECT * FROM assets WHERE active = 1")
-    suspend fun getAssetsWithSections(): List<AssetWithSections>
+    fun getAssetsWithSections(): LiveData<List<AssetWithSections>>
 
     @Transaction
     @Query("SELECT * FROM assets WHERE id_asset = :id")
@@ -48,11 +47,11 @@ interface AssetDAO {
 
     @Transaction
     @Query( "SELECT * FROM assets")
-    suspend fun getAssetsHistoryWithApps(): List<AssetWithApps>
+    fun getAssetsHistoryWithApps(): LiveData<List<AssetWithApps>>
 
     @Transaction
     @Query( "SELECT * FROM assets WHERE active = 1")
-    suspend fun getAssetsWithApps(): List<AssetWithApps>
+    fun getAssetsWithApps(): LiveData<List<AssetWithApps>>
 
     @Transaction
     @Query("SELECT * FROM assets WHERE id_asset = :id")

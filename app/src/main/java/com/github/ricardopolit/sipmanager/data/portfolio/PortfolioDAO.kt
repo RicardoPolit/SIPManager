@@ -1,5 +1,6 @@
-package com.github.ricardopolit.sipmanager.data
+package com.github.ricardopolit.sipmanager.data.portfolio
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -24,35 +25,33 @@ interface PortfolioDAO {
     suspend fun recoverPortfolio(id: Long)
 
     @Query("SELECT * FROM portfolios ORDER BY date_start")
-    suspend fun getAllHistoryPortfolios(): List<Portfolio>
+    fun getAllHistoryPortfolios(): LiveData<List<Portfolio>>
 
     @Query("SELECT * FROM portfolios WHERE active = 1 ORDER BY date_start")
-    suspend fun getAllPortfolios(): List<Portfolio>
+    fun getAllPortfolios(): LiveData<List<Portfolio>>
 
     @Query("SELECT * FROM portfolios WHERE id_portfolio = :id")
     suspend fun getPortfolio(id: Long): Portfolio?
 
-    //TODO implement function in Repository getPortfoliosHistoryWithDeposits
     @Transaction
     @Query( "SELECT * FROM portfolios")
-    suspend fun getPortfoliosHistoryWithDeposits(): List<PortfolioWithDeposits>
+    fun getPortfoliosHistoryWithDeposits(): LiveData<List<PortfolioWithDeposits>>
 
     @Transaction
     @Query( "SELECT * FROM portfolios WHERE active = 1")
-    suspend fun getPortfoliosWithDeposits(): List<PortfolioWithDeposits>
+    fun getPortfoliosWithDeposits(): LiveData<List<PortfolioWithDeposits>>
 
     @Transaction
     @Query("SELECT * FROM portfolios WHERE id_portfolio = :id")
     suspend fun getPortfolioWithDeposits(id: Long): PortfolioWithDeposits?
 
-    //TODO implement function in Repository getPortfoliosHistoryWithSections
     @Transaction
     @Query( "SELECT * FROM portfolios")
-    suspend fun getPortfoliosHistoryWithSections(): List<PortfolioWithSections>
+    fun getPortfoliosHistoryWithSections(): LiveData<List<PortfolioWithSections>>
 
     @Transaction
     @Query( "SELECT * FROM portfolios WHERE active = 1")
-    suspend fun getPortfoliosWithSections(): List<PortfolioWithSections>
+    fun getPortfoliosWithSections(): LiveData<List<PortfolioWithSections>>
 
     @Transaction
     @Query("SELECT * FROM portfolios WHERE id_portfolio = :id")

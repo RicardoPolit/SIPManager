@@ -1,5 +1,6 @@
-package com.github.ricardopolit.sipmanager.data
+package com.github.ricardopolit.sipmanager.data.app
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -12,27 +13,26 @@ interface AppDAO {
     suspend fun update(app: App)
 
     @Query( "SELECT * FROM apps ORDER BY id_app" )
-    suspend fun getAllHistoryApps(): List<App>
+    fun getAllHistoryApps(): LiveData<List<App>>
 
     @Query( "SELECT * FROM apps WHERE active = 1 ORDER BY id_app" )
-    suspend fun getAllApps(): List<App>
+    fun getAllApps(): LiveData<List<App>>
 
     @Query( "SELECT * FROM apps WHERE id_app = :id" )
     suspend fun getApp(id: Long): App?
 
     @Transaction
     @Query("SELECT * FROM apps WHERE active = 1")
-    suspend fun getAppsWithAssets(): List<AppWithAssets>
+    fun getAppsWithAssets(): LiveData<List<AppWithAssets>>
 
     @Transaction
     @Query("SELECT * FROM apps")
-    suspend fun getAppsHistoryWithAssets(): List<AppWithAssets>
+    fun getAppsHistoryWithAssets(): LiveData<List<AppWithAssets>>
 
     @Transaction
     @Query("SELECT * from apps WHERE id_app = :id")
     suspend fun getAppWithAssets(id: Long): AppWithAssets?
 
-    //TODO implement insertAppAssetCrossRef into Repository
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAppAssetCrossRef(join: AppAssetCrossRef)
 

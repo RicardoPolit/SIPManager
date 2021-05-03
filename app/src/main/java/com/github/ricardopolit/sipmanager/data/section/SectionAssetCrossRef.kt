@@ -1,4 +1,4 @@
-package com.github.ricardopolit.sipmanager.data
+package com.github.ricardopolit.sipmanager.data.section
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
