@@ -24,7 +24,7 @@ data class Portfolio(
         var dateFinish: Long,
 
         @ColumnInfo(name = "total_deposits")
-        var totalDeposits: Int = 0,
+        var totalDeposits: Float = 0.0F,
 
         @ColumnInfo(name = "earnings")
         val earnings: Float = 0.0F,

@@ -64,7 +64,12 @@ abstract class SIPManagerDatabase(): RoomDatabase(){
         @Volatile
         private var INSTANCE: SIPManagerDatabase? = null
 
+        var TEST_MODE = false
+
         fun getInstance(context: Context, password: String): SIPManagerDatabase{
+
+            if(TEST_MODE)
+                return Room.inMemoryDatabaseBuilder(context,SIPManagerDatabase::class.java).allowMainThreadQueries().build()
 
             synchronized(this){
                 var instance = INSTANCE
