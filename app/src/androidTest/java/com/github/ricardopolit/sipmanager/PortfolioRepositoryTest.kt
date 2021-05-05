@@ -60,7 +60,7 @@ class PortfolioRepositoryTest {
     @Test
     fun should_update_portfolio_item(){
         val portfolio = Portfolio(
-                id = 1,
+                id = 2,
                 name = "Portafolio prueba",
                 goal = "Este es el objetivo",
                 dateFinish = System.currentTimeMillis()+1000L,
@@ -80,11 +80,76 @@ class PortfolioRepositoryTest {
     }
 
     @Test
-    fun should_delete_all_portfolios(){
+    fun should_clear_all_portfolios(){
         runBlocking {
             portfolioRepository.clearAllPortfolios()
             val allPortfoliosTest = portfolioRepository.getAllPortfolios()
             Assert.assertEquals( allPortfoliosTest.value,null )
+        }
+    }
+
+    @Test
+    fun should_clear_portfolio_item(){
+        val portfolio = Portfolio(
+                id = 3,
+                name = "Portafolio prueba eliminar",
+                goal = "Este es el objetivo eliminar",
+                dateFinish = System.currentTimeMillis()+1000L,
+                totalDeposits = 1303450F,
+                earnings = 0.50F,
+                color = R.color.white.toString(),
+                currency = "USD"
+        )
+        runBlocking {
+            portfolioRepository.insertPortfolio(portfolio)
+            portfolioRepository.clearPortfolio(portfolio.id)
+            val portfolioTest = portfolioRepository.getPortfolio(portfolio.id)
+            Assert.assertEquals(portfolioTest,null)
+        }
+    }
+
+    @Test
+    fun should_delete_portfolio_item(){
+        val portfolio = Portfolio(
+                id = 4,
+                name = "Portafolio prueba desactivar",
+                goal = "Este es el objetivo desactivar",
+                dateFinish = System.currentTimeMillis()+1000L,
+                totalDeposits = 1303450F,
+                earnings = 0.50F,
+                color = R.color.white.toString(),
+                currency = "RUP"
+        )
+        runBlocking {
+            portfolioRepository.insertPortfolio(portfolio)
+            portfolioRepository.deletePortfolio(portfolio.id)
+            val portfolioTest = portfolioRepository.getPortfolio(portfolio.id)
+            Assert.assertEquals(portfolioTest?.active,false)
+            Assert.assertEquals(portfolioTest?.name,"Portafolio prueba desactivar")
+        }
+    }
+
+    @Test
+    fun should_recover_portfolio_item(){
+        val portfolio = Portfolio(
+                id = 5,
+                name = "Portafolio prueba activar",
+                goal = "Este es el objetivo activar",
+                dateFinish = System.currentTimeMillis()+1000L,
+                totalDeposits = 1303450F,
+                earnings = 0.50F,
+                color = R.color.white.toString(),
+                currency = "RUP"
+        )
+        runBlocking {
+            portfolioRepository.insertPortfolio(portfolio)
+            portfolioRepository.deletePortfolio(portfolio.id)
+            val portfolioTest1 = portfolioRepository.getPortfolio(portfolio.id)
+            Assert.assertEquals(portfolioTest1?.active,false)
+            Assert.assertEquals(portfolioTest1?.name,"Portafolio prueba activar")
+            portfolioRepository.recoverPortfolio(portfolio.id)
+            val portfolioTest2 = portfolioRepository.getPortfolio(portfolio.id)
+            Assert.assertEquals(portfolioTest2?.active,true)
         }
     }
 
