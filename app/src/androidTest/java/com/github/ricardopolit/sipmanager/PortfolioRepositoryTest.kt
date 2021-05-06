@@ -6,12 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
 import com.github.ricardopolit.sipmanager.data.SIPManagerDatabase
-import com.github.ricardopolit.sipmanager.data.portfolio.Portfolio
-import com.github.ricardopolit.sipmanager.data.portfolio.PortfolioDAO
 import com.github.ricardopolit.sipmanager.data.portfolio.PortfolioRepository
-import com.github.ricardopolit.sipmanager.util.CreatorOfTestPortfolio
 import kotlinx.coroutines.*
 import org.junit.*
 import org.junit.runner.RunWith
@@ -32,7 +28,7 @@ class PortfolioRepositoryTest {
         portfolioRepository = PortfolioRepository.
             getInstance(SIPManagerDatabase.getInstance(context,"test").portfolioDAO)
 
-        val portfolios = CreatorOfTestPortfolio.makeMultiple(10)
+        val portfolios = CreatorOfModelsTest.makeMultiplePortfolio(10)
 
         runBlocking {
             portfolioRepository.insertPortfolios(portfolios)
@@ -50,7 +46,7 @@ class PortfolioRepositoryTest {
 
     @Test
     fun should_Insert_Portfolio_Item(){
-        val portfolio = CreatorOfTestPortfolio.makeOne("Portafolio test")
+        val portfolio = CreatorOfModelsTest.makeOnePortfolio("Portafolio test")
         runBlocking {
             portfolioRepository.insertPortfolio(portfolio)
             val portfoliosTest = getValue(portfolioRepository.getAllPortfoliosHistory())

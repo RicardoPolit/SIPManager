@@ -24,7 +24,7 @@ data class Asset(
         val color: String,
 
         @ColumnInfo(name = "income_type")
-        val incomeType: Long,
+        val incomeType: Int,
 
         @ColumnInfo(name = "active")
         val active: Boolean = true

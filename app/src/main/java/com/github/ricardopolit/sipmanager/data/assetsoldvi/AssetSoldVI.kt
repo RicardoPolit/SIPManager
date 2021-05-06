@@ -15,13 +15,13 @@ data class AssetSoldVI(
         val idAsset: Long,
 
         @ColumnInfo(name = "value_sold")
-        val valueBought: Float,
+        val valueSold: Float,
 
         @ColumnInfo(name = "quantity")
         val quantity: Float,
 
         @ColumnInfo(name = "date_sold")
-        val dateBought: Long = System.currentTimeMillis(),
+        val dateSold: Long = System.currentTimeMillis(),
 
         @ColumnInfo(name = "earnings")
         val earnings: Float,
