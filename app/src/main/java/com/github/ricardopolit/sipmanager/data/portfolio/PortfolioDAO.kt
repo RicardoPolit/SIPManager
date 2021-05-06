@@ -9,6 +9,9 @@ interface PortfolioDAO {
     @Insert
     suspend fun insert(portfolio: Portfolio)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertPortfolios( portfolios: List<Portfolio> )
+
     @Update
     suspend fun update(portfolio: Portfolio)
 

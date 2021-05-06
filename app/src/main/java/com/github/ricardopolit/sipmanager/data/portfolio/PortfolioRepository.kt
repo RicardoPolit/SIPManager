@@ -18,6 +18,10 @@ class PortfolioRepository private constructor(
         portfolioDAO.insert(portfolio)
     }
 
+    suspend fun insertPortfolios( portfolios: List<Portfolio> ){
+        portfolioDAO.insertPortfolios(portfolios)
+    }
+
     suspend fun updatePortfolio(portfolio: Portfolio){
         portfolioDAO.update(portfolio)
     }
