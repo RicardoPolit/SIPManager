@@ -9,17 +9,17 @@ data class Deposit(
 
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id_deposit")
-        val id: Long = 0L,
+        var id: Long = 0L,
 
         @ColumnInfo(name = "date")
-        val date: Long = System.currentTimeMillis(),
+        var date: Long = System.currentTimeMillis(),
 
         @ColumnInfo(name = "amount")
-        val amount: Float,
+        var amount: Float,
 
         @ColumnInfo(name = "id_foreign_portfolio")
-        val idPortfolio: Long,
+        var idPortfolio: Long,
 
         @ColumnInfo(name = "active")
-        val active: Boolean = true
+        var active: Boolean = true
 )

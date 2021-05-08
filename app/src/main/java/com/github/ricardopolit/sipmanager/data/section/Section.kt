@@ -9,26 +9,26 @@ data class Section(
 
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id_section")
-        val id: Long = 0L,
+        var id: Long = 0L,
 
         @ColumnInfo(name = "name")
-        val name: String,
+        var name: String,
 
         @ColumnInfo(name = "current_percentage")
-        val currPercentage: Float = 0.0F,
+        var currPercentage: Float = 0.0F,
 
         @ColumnInfo(name = "target_percentage")
-        val targetPercentage: Float,
+        var targetPercentage: Float,
 
         @ColumnInfo(name = "id_foreign_portfolio")
-        val idPortfolio: Long,
+        var idPortfolio: Long,
 
         @ColumnInfo(name = "earnings")
-        val earnings: Float = 0.0F,
+        var earnings: Float = 0.0F,
 
         @ColumnInfo(name = "color")
         var color: String,
 
         @ColumnInfo(name = "active")
-        val active: Boolean = true
+        var active: Boolean = true
 )

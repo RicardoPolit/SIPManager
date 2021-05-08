@@ -9,15 +9,15 @@ data class AssetValueHistory(
 
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id_asset_history_value")
-        val id: Long = 0L,
+        var id: Long = 0L,
 
         @ColumnInfo(name = "id_foreign_asset")
-        val idAsset: Long,
+        var idAsset: Long,
 
         @ColumnInfo(name = "value")
-        val value: Float,
+        var value: Float,
 
         @ColumnInfo(name = "date")
-        val date: Long = System.currentTimeMillis()
+        var date: Long = System.currentTimeMillis()
 
 )

@@ -36,8 +36,8 @@ interface DepositDAO {
     @Query("UPDATE deposits SET active = 1 WHERE id_deposit = :id")
     suspend fun recoverDeposit(id: Long)
 
-    @Query( "UPDATE deposits SET active = 0" )
-    suspend fun deleteAllDeposits()
+//    @Query( "UPDATE deposits SET active = 0" )
+//    suspend fun deleteAllDeposits()
 
     @Query( "UPDATE deposits SET active = 0 WHERE id_foreign_portfolio = :idPortfolio" )
     suspend fun deleteAllDepositsFromPortfolio(idPortfolio: Long)

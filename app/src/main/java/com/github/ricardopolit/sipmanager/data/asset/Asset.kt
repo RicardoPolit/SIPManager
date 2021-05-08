@@ -9,24 +9,24 @@ data class Asset(
 
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id_asset")
-        val id: Long = 0L,
+        var id: Long = 0L,
 
         @ColumnInfo(name = "name")
-        val name: String,
+        var name: String,
 
         @ColumnInfo(name ="code")
-        val code: String,
+        var code: String,
 
         @ColumnInfo(name = "current_value")
-        val currentValue: Float,
+        var currentValue: Float,
 
         @ColumnInfo(name = "color")
-        val color: String,
+        var color: String,
 
         @ColumnInfo(name = "income_type")
-        val incomeType: Int,
+        var incomeType: Int,
 
         @ColumnInfo(name = "active")
-        val active: Boolean = true
+        var active: Boolean = true
 
 )

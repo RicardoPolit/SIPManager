@@ -9,21 +9,21 @@ data class AssetDividendVI(
 
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id_asset_dividend_vi")
-        val idAssetDividendVI: Long = 0L,
+        var idAssetDividendVI: Long = 0L,
 
         @ColumnInfo(name = "id_foreign_asset")
-        val idAsset: Long,
+        var idAsset: Long,
 
         @ColumnInfo(name = "figure_returned")
-        val figureReturned: Float,
+        var figureReturned: Float,
 
         @ColumnInfo(name = "quantity")
-        val quantity: Float,
+        var quantity: Float,
 
         @ColumnInfo(name = "date_returned")
-        val dateReturned: Long = System.currentTimeMillis(),
+        var dateReturned: Long = System.currentTimeMillis(),
 
         @ColumnInfo(name = "active")
-        val active: Boolean = true
+        var active: Boolean = true
 
 )

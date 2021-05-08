@@ -35,10 +35,10 @@ object CreatorOfModelsTest{
     }
 
     fun makeOnePortfolio(nameWant: String? = null,idPort: Long = -1L): Portfolio{
-        val myId = if(idPort != -1L) idPort else numberOfPortfolios++
+        val myId = if(idPort!=-1L) idPort else 0L
 
         return Portfolio(
-//                id = myId,
+                id = myId,
                 name = nameWant ?: RandomGenerator.getRandomPhrase(2),
                 goal = RandomGenerator.getRandomPhrase(4),
                 dateFinish = Random.nextLong(1000,1000000),

@@ -49,9 +49,9 @@ class DepositRepository private constructor(
         depositDAO.recoverDeposit(id)
     }
 
-    suspend fun deleteAllDeposits(){
-        depositDAO.deleteAllDeposits()
-    }
+//    suspend fun deleteAllDeposits(){
+//        depositDAO.deleteAllDeposits()
+//    }
 
     suspend fun deleteAllDepositsFromPortfolio(idPortfolio: Long){
         depositDAO.deleteAllDepositsFromPortfolio(idPortfolio)

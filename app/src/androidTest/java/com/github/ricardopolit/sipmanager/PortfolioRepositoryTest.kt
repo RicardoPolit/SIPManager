@@ -46,12 +46,12 @@ class PortfolioRepositoryTest {
 
     @Test
     fun should_Insert_Portfolio_Item(){
-        val portfolio = CreatorOfModelsTest.makeOnePortfolio("Portafolio test")
+        val portfolio = CreatorOfModelsTest.makeOnePortfolio("Portafolio test",idPort = 200)
         runBlocking {
             portfolioRepository.insertPortfolio(portfolio)
             val portfoliosTest = getValue(portfolioRepository.getAllPortfoliosHistory())
             printList( portfoliosTest )
-            Assert.assertEquals(portfoliosTest.last().name,"Portafolio test")
+            Assert.assertEquals("Portafolio test", portfoliosTest.last().name)
         }
     }
 
@@ -64,7 +64,7 @@ class PortfolioRepositoryTest {
             portfolioToUpdate?.name = "Portfolio prueba actualizado"
             portfolioRepository.updatePortfolio(portfolioToUpdate!!)
             val portfolioTest = portfolioRepository.getPortfolio(portfolio.id)
-            Assert.assertEquals(portfolioTest?.name,"Portfolio prueba actualizado")
+            Assert.assertEquals("Portfolio prueba actualizado", portfolioTest?.name)
         }
     }
 
@@ -76,7 +76,7 @@ class PortfolioRepositoryTest {
             val portfolio = portfolios.get( Random.nextInt(1, 10) )
             portfolioRepository.clearPortfolio(portfolio.id)
             val portfolioTest = portfolioRepository.getPortfolio(portfolio.id)
-            Assert.assertEquals(portfolioTest,null)
+            Assert.assertEquals(null, portfolioTest)
         }
     }
 
@@ -87,7 +87,7 @@ class PortfolioRepositoryTest {
             val portfolio = portfolios.get( Random.nextInt(1, 10) )
             portfolioRepository.deletePortfolio(portfolio.id)
             val portfolioTest = portfolioRepository.getPortfolio(portfolio.id)
-            Assert.assertEquals(portfolioTest?.active,false)
+            Assert.assertEquals(false, portfolioTest?.active)
         }
     }
 
@@ -98,10 +98,10 @@ class PortfolioRepositoryTest {
             val portfolio = portfolios.get( Random.nextInt(1, 10) )
             portfolioRepository.deletePortfolio(portfolio.id)
             val portfolioTest1 = portfolioRepository.getPortfolio(portfolio.id)
-            Assert.assertEquals(portfolioTest1?.active,false)
+            Assert.assertEquals(false, portfolioTest1?.active)
             portfolioRepository.recoverPortfolio(portfolio.id)
             val portfolioTest2 = portfolioRepository.getPortfolio(portfolio.id)
-            Assert.assertEquals(portfolioTest2?.active,true)
+            Assert.assertEquals(true, portfolioTest2?.active)
         }
     }
 
@@ -125,7 +125,7 @@ class PortfolioRepositoryTest {
         return data[0] as T
     }
 
-    fun <T> printList( list: List<T>){
+    private fun <T> printList( list: List<T>){
         for(item in list)
             println( item.toString() )
     }

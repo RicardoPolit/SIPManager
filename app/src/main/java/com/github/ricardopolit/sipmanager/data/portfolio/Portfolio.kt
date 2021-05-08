@@ -27,7 +27,7 @@ data class Portfolio(
         var totalDeposits: Float = 0.0F,
 
         @ColumnInfo(name = "earnings")
-        val earnings: Float = 0.0F,
+        var earnings: Float = 0.0F,
 
         @ColumnInfo(name = "color")
         var color: String,

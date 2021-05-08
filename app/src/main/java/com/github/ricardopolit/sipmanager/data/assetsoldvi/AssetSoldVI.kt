@@ -9,24 +9,24 @@ data class AssetSoldVI(
 
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id_asset_sold_vi")
-        val idAssetSoldVI: Long = 0L,
+        var idAssetSoldVI: Long = 0L,
 
         @ColumnInfo(name = "id_foreign_asset")
-        val idAsset: Long,
+        var idAsset: Long,
 
         @ColumnInfo(name = "value_sold")
-        val valueSold: Float,
+        var valueSold: Float,
 
         @ColumnInfo(name = "quantity")
-        val quantity: Float,
+        var quantity: Float,
 
         @ColumnInfo(name = "date_sold")
-        val dateSold: Long = System.currentTimeMillis(),
+        var dateSold: Long = System.currentTimeMillis(),
 
         @ColumnInfo(name = "earnings")
-        val earnings: Float,
+        var earnings: Float,
 
         @ColumnInfo(name = "active")
-        val active: Boolean = true
+        var active: Boolean = true
 
 )
